@@ -246,6 +246,7 @@ static void delayedInit(timer *t, void *user) {
   if(!syslog_is_available() && trys-- > 0)
     timer_schedule_after_msecs(&delayedInitTimer, 200);
   else {
+    sendHeartBeat(rscp_Starting);
     parseConfig();
     sendHeartBeat(rscp_Running);
   }

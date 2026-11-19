@@ -415,11 +415,11 @@ static void setBinaryOutputChannel(binaryOutputChannelState *boc, binaryOutputCh
   switch (payload[0]) {
   case 0x10: // boolean false
     RSCP_DEBUG("setBinaryOutputChannel(%d), port=%d: OFF", channelID, bocc->port);
-    setPortPORT(bocc->port, 0);
+    setPortPORT(bocc->port, bocc->negate ? 1 : 0);
     break;
   case 0x11: // boolean true
     RSCP_DEBUG("setBinaryOutputChannel(%d), port=%d: ON", channelID, bocc->port);
-    setPortPORT(bocc->port, 1);
+    setPortPORT(bocc->port, bocc->negate ? 0 : 1);
     break;
   default:
     RSCP_DEBUG(
